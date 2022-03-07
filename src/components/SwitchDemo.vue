@@ -1,23 +1,23 @@
 <template>
-  <div class=''>switch的文档</div>
-
+  <div>
+    <Switch :value="value" @input="value = $event" />
+  </div>
 </template>
 
-<script>
-
+<script lang="ts">
+import { ref } from "vue";
+import Switch from "../lib/Switch.vue";
 export default {
-  components: {},
-  data () {
-    return {
-
-    };
+  components: {
+    Switch,
   },
-  methods: {
+  setup() {
+    const value = ref(false);
 
-  }
+    return { value };
+  },
 };
 </script>
 
 <style lang='' scoped>
-
 </style>
