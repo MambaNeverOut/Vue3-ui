@@ -1,23 +1,20 @@
 <template>
-  <div class=''>button示例</div>
-
+  <div>button示例</div>
+  <h1>示例1</h1>
+  <div>
+    <Button />
+  </div>
 </template>
 
-<script>
-
+<script lang="ts">
+import Button from "../lib/Button.vue";
 export default {
-  components: {},
-  data () {
-    return {
-
-    };
+  components: { Button },
+  data() {
+    return {};
   },
-  methods: {
-
-  }
+  methods: {},
 };
 </script>
 
-<style lang='' scoped>
-
-</style>
+<style lang="" scoped></style>
