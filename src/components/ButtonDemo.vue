@@ -2,7 +2,13 @@
   <div>button示例</div>
   <h1>示例1</h1>
   <div>
-    <Button />
+    <Button
+      @click="onClick"
+      @focus="onFocus"
+      @mouseover="onMouseOver"
+      size="small"
+      >按钮</Button
+    >
   </div>
 </template>
 
@@ -10,10 +16,18 @@
 import Button from "../lib/Button.vue";
 export default {
   components: { Button },
-  data() {
-    return {};
+  setup() {
+    const onClick = () => {
+      console.log("click");
+    };
+    const onFocus = () => {
+      console.log("focus");
+    };
+    const onMouseOver = () => {
+      console.log("mouseover");
+    };
+    return { onClick, onFocus, onMouseOver };
   },
-  methods: {},
 };
 </script>
 
