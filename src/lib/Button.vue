@@ -1,6 +1,6 @@
 <template>
   <div :size="size">
-    <button v-bind="$attrs">
+    <button v-bind="rest">
       <slot></slot>
     </button>
   </div>
