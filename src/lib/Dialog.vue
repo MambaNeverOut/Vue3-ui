@@ -1,23 +1,24 @@
 <template>
   <template v-if="visible">
-    <div class="imperfect-dialog-overlay" @click="onClickOverlay"></div>
-    <div class="imperfect-dialog-wrapper">
-      <div class="imperfect-dialog">
-        <header>
-          <slot name="title"></slot>
-          <span class="imperfect-dialog-close" @click="close"></span>
-        </header>
-        <main>
-          <slot name="content"></slot>
-        </main>
-        <footer>
-          <Button level="main" @click="ok">OK</Button>
-          <Button @click="cancel">Cancel</Button>
-        </footer>
+    <Teleport to="body">
+      <div class="imperfect-dialog-overlay" @click="onClickOverlay"></div>
+      <div class="imperfect-dialog-wrapper">
+        <div class="imperfect-dialog">
+          <header>
+            <slot name="title"></slot>
+            <span class="imperfect-dialog-close" @click="close"></span>
+          </header>
+          <main>
+            <slot name="content"></slot>
+          </main>
+          <footer>
+            <Button level="main" @click="ok">OK</Button>
+            <Button @click="cancel">Cancel</Button>
+          </footer>
+        </div>
       </div>
-    </div>
+    </Teleport>
   </template>
-</template>
 </template>
 
 <script lang="ts">
