@@ -1,5 +1,6 @@
 <template>
   <button class="imperfect-button" :class="classes" :disabled="disabled">
+    <span v-if="loading" class="imperfect-loadingIndicator"></span>
     <slot></slot>
   </button>
 </template>
@@ -22,6 +23,10 @@ export default {
       default: "normal",
     },
     disabled: {
+      type: Boolean,
+      default: false,
+    },
+    loading: {
       type: Boolean,
       default: false,
     },
