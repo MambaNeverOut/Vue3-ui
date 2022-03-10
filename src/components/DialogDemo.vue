@@ -1,6 +1,6 @@
 <template>
   <div class="">dialog示例</div>
-  <h1>示例</h1>
+  <h1>示例1</h1>
   <Button @click="toggle">toggle</Button>
   <!-- <Dialog :visible="visible" @update:visible="visible = $event"></Dialog> -->
   <Dialog v-model:visible="visible" :ok="ok" :cancel="cancel">
@@ -12,12 +12,16 @@
       <p>我是内容</p>
     </template>
   </Dialog>
+  <h1>示例2</h1>
+  <Button @click="showDialog">show</Button>
 </template>
 
 <script>
 import { ref } from "vue";
 import Button from "../lib/Button.vue";
 import Dialog from "../lib/Dialog.vue";
+import { openDialog } from "../lib/openDialog";
+
 export default {
   components: {
     Button,
@@ -29,11 +33,22 @@ export default {
       visible.value = !visible.value;
     };
     const ok = () => {
-      return false
+      return false;
     };
-    const cancel = () => {
+    const cancel = () => {};
+    const showDialog = () => {
+      openDialog({
+        title: "标题",
+        content: "我是内容",
+        ok() {
+          console.log("ok");
+        },
+        cancel() {
+          console.log("cancel");
+        },
+      });
     };
-    return { visible, toggle, ok, cancel };
+    return { visible, toggle, ok, cancel, showDialog };
   },
 };
 </script>

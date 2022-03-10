@@ -19,7 +19,7 @@
       </div>
     </Teleport>
   </template>
-</template>
+</template> 
 
 <script lang="ts">
 import Button from "./Button.vue";
@@ -58,8 +58,11 @@ export default {
       }
     };
     const cancel = () => {
-      context.emit("cancel");
-      close();
+      if (props.cancel) {
+        props.cancel();
+        context.emit("cancel");
+        close();
+      }
     };
     return { close, onClickOverlay, ok, cancel };
   },
