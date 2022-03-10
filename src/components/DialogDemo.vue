@@ -1,23 +1,34 @@
 <template>
-  <div class=''>dialog示例</div>
-
+  <div class="">dialog示例</div>
+  <h1>示例</h1>
+  <Button @click="toggle">toggle</Button>
+  <!-- <Dialog :visible="visible" @update:visible="visible = $event"></Dialog> -->
+  <Dialog v-model:visible="visible" :ok="ok" :cancel="cancel"></Dialog>
 </template>
 
 <script>
-
+import { ref } from "vue";
+import Button from "../lib/Button.vue";
+import Dialog from "../lib/Dialog.vue";
 export default {
-  components: {},
-  data () {
-    return {
-
-    };
+  components: {
+    Button,
+    Dialog,
   },
-  methods: {
-
-  }
+  setup() {
+    const visible = ref(false);
+    const toggle = () => {
+      visible.value = !visible.value;
+    };
+    const ok = () => {
+      return false
+    };
+    const cancel = () => {
+    };
+    return { visible, toggle, ok, cancel };
+  },
 };
 </script>
 
 <style lang='' scoped>
-
 </style>
