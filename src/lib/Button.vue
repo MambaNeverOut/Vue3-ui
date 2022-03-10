@@ -1,26 +1,37 @@
 <template>
-  <button class="gulu-button" :class="`theme-${theme}`">
+  <button class="imperfect-button" :class="classes">
     <slot></slot>
   </button>
 </template>
 
 <script lang="ts">
+import { computed } from "vue";
+
 export default {
   props: {
     theme: {
       type: String,
       default: "button",
     },
+    size: {
+      type: String,
+      default: "normal",
+    },
   },
-  inheritAttrs: false,
   setup(props, context) {
-    const { size, ...rest } = context.attrs;
-    return { size, rest };
+    const { theme, size } = props;
+    const classes = computed(() => {
+      return {
+        [`imperfect-theme-${theme}`]: theme,
+        [`imperfect-size-${size}`]: size,
+      };
+    });
+    return { classes };
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $h: 32px;
 $border-color: #d9d9d9;
 $color: #333;
@@ -28,7 +39,7 @@ $blue: #40a9ff;
 $radius: 4px;
 $red: red;
 $grey: grey;
-.gulu-button {
+.imperfect-button {
   box-sizing: border-box;
   height: $h;
   padding: 0 12px;
@@ -57,7 +68,7 @@ $grey: grey;
   &::-moz-focus-inner {
     border: 0;
   }
-  &.gulu-theme-link {
+  &.imperfect-theme-link {
     border-color: transparent;
     box-shadow: none;
     color: $blue;
@@ -66,7 +77,7 @@ $grey: grey;
       color: lighten($blue, 10%);
     }
   }
-  &.gulu-theme-text {
+  &.imperfect-theme-text {
     border-color: transparent;
     box-shadow: none;
     color: inherit;
@@ -75,18 +86,18 @@ $grey: grey;
       background: darken(white, 5%);
     }
   }
-  &.gulu-size-big {
+  &.imperfect-size-big {
     font-size: 24px;
     height: 48px;
     padding: 0 16px;
   }
-  &.gulu-size-small {
+  &.imperfect-size-small {
     font-size: 12px;
     height: 20px;
     padding: 0 4px;
   }
-  &.gulu-theme-button {
-    &.gulu-level-main {
+  &.imperfect-theme-button {
+    &.imperfect-level-main {
       background: $blue;
       color: white;
       border-color: $blue;
@@ -96,7 +107,7 @@ $grey: grey;
         border-color: darken($blue, 10%);
       }
     }
-    &.gulu-level-danger {
+    &.imperfect-level-danger {
       background: $red;
       border-color: $red;
       color: white;
@@ -107,8 +118,8 @@ $grey: grey;
       }
     }
   }
-  &.gulu-theme-link {
-    &.gulu-level-danger {
+  &.imperfect-theme-link {
+    &.imperfect-level-danger {
       color: $red;
       &:hover,
       &:focus {
@@ -116,15 +127,15 @@ $grey: grey;
       }
     }
   }
-  &.gulu-theme-text {
-    &.gulu-level-main {
+  &.imperfect-theme-text {
+    &.imperfect-level-main {
       color: $blue;
       &:hover,
       &:focus {
         color: darken($blue, 10%);
       }
     }
-    &.gulu-level-danger {
+    &.imperfect-level-danger {
       color: $red;
       &:hover,
       &:focus {
@@ -132,7 +143,7 @@ $grey: grey;
       }
     }
   }
-  &.gulu-theme-button {
+  &.imperfect-theme-button {
     &[disabled] {
       cursor: not-allowed;
       color: $grey;
@@ -141,14 +152,14 @@ $grey: grey;
       }
     }
   }
-  &.gulu-theme-link,
-  &.gulu-theme-text {
+  &.imperfect-theme-link,
+  &.imperfect-theme-text {
     &[disabled] {
       cursor: not-allowed;
       color: $grey;
     }
   }
-  > .gulu-loadingIndicator {
+  > .imperfect-loadingIndicator {
     width: 14px;
     height: 14px;
     display: inline-block;
@@ -157,10 +168,10 @@ $grey: grey;
     border-color: $blue $blue $blue transparent;
     border-style: solid;
     border-width: 2px;
-    animation: gulu-spin 1s infinite linear;
+    animation: imperfect-spin 1s infinite linear;
   }
 }
-@keyframes gulu-spin {
+@keyframes imperfect-spin {
   0% {
     transform: rotate(0deg);
   }
@@ -169,3 +180,7 @@ $grey: grey;
   }
 }
 </style>
+
+function computed(arg0: () => { [x: string]: string; }) {
+  throw new Error('Function not implemented.');
+}

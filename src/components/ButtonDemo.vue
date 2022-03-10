@@ -9,9 +9,21 @@
       size="small"
       >按钮</Button
     >
+    <Button theme="button">按钮</Button>
     <Button theme="link">按钮</Button>
-    <Button theme="link">按钮</Button>
-    <Button>按钮</Button>
+    <Button theme="text">按钮</Button>
+  </div>
+  <h1>示例2</h1>
+  <div>
+    <Button size="big">大大按钮</Button>
+    <Button>正常按钮</Button>
+    <Button size="small">小小按钮</Button>
+  </div>
+   <h1>示例3</h1>
+  <div>
+    <Button size="big">大大按钮</Button>
+    <Button>正常按钮</Button>
+    <Button size="small">小小按钮</Button>
   </div>
 </template>
 

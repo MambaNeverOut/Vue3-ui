@@ -1,5 +1,5 @@
 <template>
-  <button :class="{ checked: value }" @click="toggle">
+  <button class="imperfect-switch" :class="{ checked: value }" @click="toggle">
     <span></span>
   </button>
 </template>
@@ -18,7 +18,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $h: 22px;
 $h2: $h - 4px;
 button {
