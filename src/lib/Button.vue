@@ -1,5 +1,5 @@
 <template>
-  <button class="imperfect-button" :class="classes">
+  <button class="imperfect-button" :class="classes" :disabled="disabled">
     <slot></slot>
   </button>
 </template>
@@ -17,13 +17,22 @@ export default {
       type: String,
       default: "normal",
     },
+    level: {
+      type: String,
+      default: "normal",
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, context) {
-    const { theme, size } = props;
+    const { theme, size, level } = props;
     const classes = computed(() => {
       return {
         [`imperfect-theme-${theme}`]: theme,
         [`imperfect-size-${size}`]: size,
+        [`imperfect-level-${level}`]: level,
       };
     });
     return { classes };

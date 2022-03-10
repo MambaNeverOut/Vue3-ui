@@ -19,11 +19,17 @@
     <Button>正常按钮</Button>
     <Button size="small">小小按钮</Button>
   </div>
-   <h1>示例3</h1>
+  <h1>示例3</h1>
   <div>
-    <Button size="big">大大按钮</Button>
+    <Button level="main">主要按钮</Button>
     <Button>正常按钮</Button>
-    <Button size="small">小小按钮</Button>
+    <Button level="danger">危险按钮</Button>
+  </div>
+   <h1>示例4</h1>
+  <div>
+    <Button disabled>按钮</Button>
+    <Button>按钮</Button>
+    <Button :disabled="true">按钮</Button>
   </div>
 </template>
 
