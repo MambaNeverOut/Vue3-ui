@@ -4,12 +4,11 @@
     <div class="imperfect-dialog-wrapper">
       <div class="imperfect-dialog">
         <header>
-          标题
+          <slot name="title"></slot>
           <span class="imperfect-dialog-close" @click="close"></span>
         </header>
         <main>
-          <p>第一行字</p>
-          <p>第二行字</p>
+          <slot name="content"></slot>
         </main>
         <footer>
           <Button level="main" @click="ok">OK</Button>

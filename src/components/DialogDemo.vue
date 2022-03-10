@@ -3,7 +3,15 @@
   <h1>示例</h1>
   <Button @click="toggle">toggle</Button>
   <!-- <Dialog :visible="visible" @update:visible="visible = $event"></Dialog> -->
-  <Dialog v-model:visible="visible" :ok="ok" :cancel="cancel"></Dialog>
+  <Dialog v-model:visible="visible" :ok="ok" :cancel="cancel">
+    <template v-slot:title>
+      <h1>标题</h1>
+    </template>
+    <template v-slot:content>
+      <p>我是内容</p>
+      <p>我是内容</p>
+    </template>
+  </Dialog>
 </template>
 
 <script>
