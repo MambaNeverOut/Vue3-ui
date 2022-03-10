@@ -40,6 +40,7 @@ export default {
       openDialog({
         title: "标题",
         content: "我是内容",
+        closeOnClickOverlay: true,
         ok() {
           console.log("ok");
         },
@@ -53,5 +54,4 @@ export default {
 };
 </script>
 
-<style lang='' scoped>
-</style>
+<style lang="" scoped></style>
