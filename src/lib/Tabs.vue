@@ -18,18 +18,12 @@
       <div class="imperfect-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="imperfect-tabs-content">
-      <component
-        class="imperfect-tabs-content-item"
-        :class="{ selected: c.props.title === selected }"
-        v-for="c in defaults"
-        :key="c"
-        :is="c"
-      ></component>
+      <component class="imperfect-tabs-content-item" :is="current" :key="current.props.title"></component>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { onMounted, ref, watchEffect } from "vue";
+import { computed, onMounted, ref, watchEffect } from "vue";
 import Tab from "./Tab.vue";
 export default {
   props: {
@@ -50,7 +44,9 @@ export default {
     const titles = defaults.map((tag) => {
       return tag.props.title;
     });
-
+    const current = computed(() => {
+      return defaults.filter((tag) => tag.props.title === props.selected)[0];
+    });
     const select = (title: string) => {
       context.emit("update:selected", title);
     };
@@ -70,6 +66,7 @@ export default {
       selectedItem,
       indicator,
       defaults,
+      current,
       titles,
       select,
     };
