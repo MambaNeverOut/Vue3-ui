@@ -1,13 +1,20 @@
 <template>
   <div class="imperfect-tabs">
     <div class="imperfect-tabs-nav">
-      <div class="imperfect-tabs-nav-item" v-for="t in titles" :key="t">
+      <div
+        class="imperfect-tabs-nav-item"
+        :class="{ selected: t === selected }"
+        v-for="(t, index) in titles"
+        :key="index"
+        @click="select(t)"
+      >
         {{ t }}
       </div>
     </div>
     <div class="imperfect-tabs-content">
       <component
         class="imperfect-tabs-content-item"
+        :class="{ selected: c.props.title === selected }"
         v-for="c in defaults"
         :key="c"
         :is="c"
@@ -18,6 +25,11 @@
 <script lang="ts">
 import Tab from "./Tab.vue";
 export default {
+  props: {
+    selected: {
+      type: String,
+    },
+  },
   setup(props, context) {
     const defaults = context.slots.default();
     defaults.forEach((tag) => {
@@ -28,9 +40,14 @@ export default {
     const titles = defaults.map((tag) => {
       return tag.props.title;
     });
+
+    const select = (title: string) => {
+      context.emit("update:selected", title);
+    };
     return {
       defaults,
       titles,
+      select,
     };
   },
 };
