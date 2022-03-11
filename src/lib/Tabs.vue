@@ -7,9 +7,15 @@
         v-for="(t, index) in titles"
         :key="index"
         @click="select(t)"
+        :ref="
+          (el) => {
+            if (el) navItems[index] = el;
+          }
+        "
       >
         {{ t }}
       </div>
+      <div class="imperfect-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="imperfect-tabs-content">
       <component
@@ -23,6 +29,7 @@
   </div>
 </template>
 <script lang="ts">
+import { computed, onMounted, ref } from "vue";
 import Tab from "./Tab.vue";
 export default {
   props: {
@@ -31,11 +38,25 @@ export default {
     },
   },
   setup(props, context) {
+    const navItems = ref<HTMLDivElement[]>([]);
+    const indicator = ref<HTMLDivElement>(null);
+    onMounted(() => {
+      const divs = navItems.value;
+      const result = divs.filter((div) =>
+        div.classList.contains("selected")
+      )[0];
+
+      const { width } = result.getBoundingClientRect();
+      indicator.value.style.width = width + "px";
+    });
     const defaults = context.slots.default();
     defaults.forEach((tag) => {
       if (tag.type !== Tab) {
         throw new Error("Tabs 字标签必须是Tab");
       }
+    });
+    const current = computed(() => {
+      return defaults.find((tag) => tag.props.title === props.selected);
     });
     const titles = defaults.map((tag) => {
       return tag.props.title;
@@ -45,8 +66,11 @@ export default {
       context.emit("update:selected", title);
     };
     return {
+      navItems,
+      indicator,
       defaults,
       titles,
+      current,
       select,
     };
   },
