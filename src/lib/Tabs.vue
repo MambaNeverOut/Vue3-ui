@@ -1,6 +1,6 @@
 <template>
   <div class="imperfect-tabs">
-    <div class="imperfect-tabs-nav">
+    <div class="imperfect-tabs-nav" ref="container">
       <div
         class="imperfect-tabs-nav-item"
         :class="{ selected: t === selected }"
@@ -9,7 +9,7 @@
         @click="select(t)"
         :ref="
           (el) => {
-            if (el) navItems[index] = el;
+            if (t === selected) selectedItem = el;
           }
         "
       >
@@ -29,7 +29,7 @@
   </div>
 </template>
 <script lang="ts">
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, onUpdated, ref } from "vue";
 import Tab from "./Tab.vue";
 export default {
   props: {
@@ -38,23 +38,24 @@ export default {
     },
   },
   setup(props, context) {
-    const navItems = ref<HTMLDivElement[]>([]);
+    const container = ref<HTMLDivElement>(null);
+    const selectedItem = ref<HTMLDivElement>(null);
     const indicator = ref<HTMLDivElement>(null);
-    onMounted(() => {
-      const divs = navItems.value;
-      const result = divs.filter((div) =>
-        div.classList.contains("selected")
-      )[0];
-
-      const { width } = result.getBoundingClientRect();
-      indicator.value.style.width = width + "px";
-    });
     const defaults = context.slots.default();
     defaults.forEach((tag) => {
       if (tag.type !== Tab) {
         throw new Error("Tabs 字标签必须是Tab");
       }
     });
+    const setElStyle = () => {
+      const { width, left: left2 } = selectedItem.value.getBoundingClientRect();
+      const { left: left1 } = container.value.getBoundingClientRect();
+
+      indicator.value.style.width = width + "px";
+      indicator.value.style.left = left2 - left1 + "px";
+    };
+    onMounted(setElStyle);
+    onUpdated(setElStyle);
     const current = computed(() => {
       return defaults.find((tag) => tag.props.title === props.selected);
     });
@@ -66,7 +67,8 @@ export default {
       context.emit("update:selected", title);
     };
     return {
-      navItems,
+      container,
+      selectedItem,
       indicator,
       defaults,
       titles,
