@@ -29,7 +29,7 @@
   </div>
 </template>
 <script lang="ts">
-import { computed, onMounted, onUpdated, ref } from "vue";
+import { onMounted, ref, watchEffect } from "vue";
 import Tab from "./Tab.vue";
 export default {
   props: {
@@ -47,18 +47,6 @@ export default {
         throw new Error("Tabs 字标签必须是Tab");
       }
     });
-    const setElStyle = () => {
-      const { width, left: left2 } = selectedItem.value.getBoundingClientRect();
-      const { left: left1 } = container.value.getBoundingClientRect();
-
-      indicator.value.style.width = width + "px";
-      indicator.value.style.left = left2 - left1 + "px";
-    };
-    onMounted(setElStyle);
-    onUpdated(setElStyle);
-    const current = computed(() => {
-      return defaults.find((tag) => tag.props.title === props.selected);
-    });
     const titles = defaults.map((tag) => {
       return tag.props.title;
     });
@@ -66,13 +54,23 @@ export default {
     const select = (title: string) => {
       context.emit("update:selected", title);
     };
+    onMounted(() => {
+      watchEffect(() => {
+        const { width, left: left2 } =
+          selectedItem.value.getBoundingClientRect();
+        const { left: left1 } = container.value.getBoundingClientRect();
+
+        indicator.value.style.width = width + "px";
+        indicator.value.style.left = left2 - left1 + "px";
+      });
+    });
+
     return {
       container,
       selectedItem,
       indicator,
       defaults,
       titles,
-      current,
       select,
     };
   },
