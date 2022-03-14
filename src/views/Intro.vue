@@ -1,23 +1,17 @@
 <template>
-  <div class=''></div>
-
+  <article class="markdown-body" v-html="md"></article>
 </template>
 
 <script>
 
+import md from "../markdown/intro.md";
 export default {
   components: {},
-  data () {
-    return {
-
-    };
+  data() {
+    return { md };
   },
-  methods: {
-
-  }
+  methods: {},
 };
 </script>
 
-<style lang='' scoped>
-
-</style>
+<style lang="" scoped></style>

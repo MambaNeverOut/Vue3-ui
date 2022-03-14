@@ -1,23 +1,17 @@
 <template>
-  <div class=''>安装</div>
-
+  <article class="markdown-body" v-html="md"></article>
 </template>
 
 <script>
 
+import md from "../markdown/install.md";
 export default {
   components: {},
-  data () {
-    return {
-
-    };
+  data() {
+    return { md };
   },
-  methods: {
-
-  }
+  methods: {},
 };
 </script>
 
-<style lang='' scoped>
-
-</style>
+<style lang="" scoped></style>
