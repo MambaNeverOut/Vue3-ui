@@ -8,8 +8,12 @@ export const router = createRouter({
     { path: '/', component: Home },
     {
       path: '/doc', component: Doc,
+
       children: [
         { path: '', component: () => import("./components/DocDemo.vue") },
+        { path: 'intro', component: () => import("./views/Intro.vue") },
+        { path: 'install', component: () => import("./views/Install.vue") },
+        { path: 'get-started', component: () => import("./views/GetStarted.vue") },
         { path: 'switch', component: () => import("./components/SwitchDemo.vue") },
         { path: 'button', component: () => import("./components/ButtonDemo.vue") },
         { path: 'dialog', component: () => import("./components/DialogDemo.vue") },
