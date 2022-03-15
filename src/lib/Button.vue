@@ -55,6 +55,7 @@ $red: red;
 $grey: grey;
 .imperfect-button {
   box-sizing: border-box;
+  width: auto;
   height: $h;
   padding: 0 12px;
   cursor: pointer;
@@ -195,6 +196,3 @@ $grey: grey;
 }
 </style>
 
-function computed(arg0: () => { [x: string]: string; }) {
-  throw new Error('Function not implemented.');
-}
