@@ -13,8 +13,41 @@
   </div>
 </template>
 
-<script>
-export default {};
+<script lang="ts">
+import Button from "../lib/Button.vue";
+import "prismjs";
+// import "prismjs/themes/prism-okaidia.css";
+// import  'prismjs/themes/prism.css';
+// import  'prismjs/themes/prism-dark.css';
+// import  'prismjs/themes/prism-funky.css';
+import "prismjs/themes/prism-tomorrow.css";
+import { computed, ref } from "vue";
+
+const Prism = (window as any).Prism;
+export default {
+  props: {
+    component: Object,
+  },
+  components: { Button },
+  setup(props, context) {
+    const html = computed(() =>
+      Prism.highlight(
+        props.component.__sourceCode,
+        Prism.languages.html,
+        "html"
+      )
+    );
+    const codeVisible = ref(false);
+    const toggleCode = () => {
+      codeVisible.value = !codeVisible.value;
+    };
+    return {
+      html,
+      codeVisible,
+      toggleCode,
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>

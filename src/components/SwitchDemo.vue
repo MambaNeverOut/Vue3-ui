@@ -1,26 +1,8 @@
 <template>
   <div>
-    <div class="demo">
-      <h2>常规用法</h2>
-      <div class="demo-component">
-        <Switch v-model:value="bool" />
-      </div>
-      <div class="demo-actions">
-        <!-- <Button @click="toggleCode">查看代码</Button> -->
-      </div>
-      <div class="demo-code">
-        <pre
-        class="language-html"
-          v-html="
-            Prism.highlight(
-              Switch1Demo.__sourceCode,
-              Prism.languages.html,
-              'html'
-            )
-          "
-        ></pre>
-      </div>
-    </div>
+    <h1>Switch 组件示例</h1>
+    <Demo :component="Switch1Demo" />
+    <Demo :component="Switch2Demo" />
   </div>
 </template>
 
@@ -29,26 +11,19 @@ import { ref } from "vue";
 import Switch from "../lib/Switch.vue";
 import Switch1Demo from "../code/Switch1.demo.vue";
 import Switch2Demo from "../code/Switch2.demo.vue";
-import "prismjs";
-// import "prismjs/themes/prism-okaidia.css";
-// import  'prismjs/themes/prism.css';
-// import  'prismjs/themes/prism-dark.css';
-// import  'prismjs/themes/prism-funky.css';
-import  'prismjs/themes/prism-tomorrow.css';
-
-const Prism = (window as any).Prism;
-
+import Demo from "./Demo.vue";
 
 export default {
   components: {
     Switch,
     Switch1Demo,
     Switch2Demo,
+    Demo,
   },
   setup() {
     const bool = ref(false);
 
-    return { bool, Switch1Demo, Prism };
+    return { bool, Switch1Demo, Switch2Demo };
   },
 };
 </script>

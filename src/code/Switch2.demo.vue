@@ -1,5 +1,6 @@
+<demo>支持 disabled</demo>
 <template>
-  <Switch v-model:value="bool" />
+  <Switch v-model:value="bool" disabled />
 </template>
 
 <script lang="ts">
