@@ -1,5 +1,5 @@
 <template>
-  <div>button示例</div>
+  <h1>button示例</h1>
   <Demo :component="Button1Demo" />
   <Demo :component="Button2Demo" />
   <Demo :component="Button3Demo" />
@@ -17,19 +17,7 @@ import Button5Demo from "../code/Button5.demo.vue";
 export default {
   components: { Demo, Button1Demo, Button2Demo, Button4Demo, Button5Demo },
   setup() {
-    const onClick = () => {
-      console.log("click");
-    };
-    const onFocus = () => {
-      console.log("focus");
-    };
-    const onMouseOver = () => {
-      console.log("mouseover");
-    };
     return {
-      onClick,
-      onFocus,
-      onMouseOver,
       Button1Demo,
       Button2Demo,
       Button3Demo,
