@@ -1,47 +1,21 @@
 <template>
   <div>button示例</div>
-  <h1>示例1</h1>
-  <div>
-    <Button
-      @click="onClick"
-      @focus="onFocus"
-      @mouseover="onMouseOver"
-      size="small"
-      >按钮</Button
-    >
-    <Button theme="button">按钮</Button>
-    <Button theme="link">按钮</Button>
-    <Button theme="text">按钮</Button>
-  </div>
-  <h1>示例2</h1>
-  <div>
-    <Button size="big">大大按钮</Button>
-    <Button>正常按钮</Button>
-    <Button size="small">小小按钮</Button>
-  </div>
-  <h1>示例3</h1>
-  <div>
-    <Button level="main">主要按钮</Button>
-    <Button>正常按钮</Button>
-    <Button level="danger">危险按钮</Button>
-  </div>
-   <h1>示例4</h1>
-  <div>
-    <Button disabled>禁用按钮</Button>
-    <Button>按钮</Button>
-    <Button :disabled="true">禁用按钮</Button>
-  </div>
-   <h1>示例5</h1>
-  <div>
-    <Button loading>加载中</Button>
-    <Button>加载完毕</Button>
-  </div>
+  <Demo :component="Button1Demo" />
+  <Demo :component="Button2Demo" />
+  <Demo :component="Button3Demo" />
+  <Demo :component="Button4Demo" />
+  <Demo :component="Button5Demo" />
 </template>
 
 <script lang="ts">
-import Button from "../lib/Button.vue";
+import Demo from "./Demo.vue";
+import Button1Demo from "../code/Button1.demo.vue";
+import Button2Demo from "../code/Button2.demo.vue";
+import Button3Demo from "../code/Button3.demo.vue";
+import Button4Demo from "../code/Button4.demo.vue";
+import Button5Demo from "../code/Button5.demo.vue";
 export default {
-  components: { Button },
+  components: { Demo, Button1Demo, Button2Demo, Button4Demo, Button5Demo },
   setup() {
     const onClick = () => {
       console.log("click");
@@ -52,7 +26,16 @@ export default {
     const onMouseOver = () => {
       console.log("mouseover");
     };
-    return { onClick, onFocus, onMouseOver };
+    return {
+      onClick,
+      onFocus,
+      onMouseOver,
+      Button1Demo,
+      Button2Demo,
+      Button3Demo,
+      Button4Demo,
+      Button5Demo,
+    };
   },
 };
 </script>
