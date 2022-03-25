@@ -1,11 +1,12 @@
-<template>
+  <template>
   <div class="demo">
     <h2>{{ component.__sourceCodeTitle }}</h2>
     <div class="demo-component">
       <component :is="component" />
     </div>
     <div class="demo-actions">
-      <Button @click="toggleCode">查看代码</Button>
+      <Button @click="hideCode" v-if="codeVisible">隐藏代码</Button>
+      <Button @click="showCode" v-else>查看代码</Button>
     </div>
     <div class="demo-code" v-if="codeVisible">
       <pre class="language-html" v-html="html" />
@@ -17,7 +18,7 @@
 import Button from "../lib/Button.vue";
 import "prismjs";
 // import "prismjs/themes/prism-okaidia.css";
-import  'prismjs/themes/prism.css';
+import "prismjs/themes/prism.css";
 // import  'prismjs/themes/prism-coy.css';
 // import  'prismjs/themes/prism-solarizedlight.css';
 // import  'prismjs/themes/prism-twilight.css';
@@ -41,13 +42,17 @@ export default {
       )
     );
     const codeVisible = ref(false);
-    const toggleCode = () => {
-      codeVisible.value = !codeVisible.value;
+    const showCode = () => {
+      codeVisible.value = true
     };
+    const hideCode = () =>{
+      codeVisible.value = false;
+    }
     return {
       html,
       codeVisible,
-      toggleCode,
+      showCode,
+      hideCode
     };
   },
 };

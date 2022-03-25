@@ -1,10 +1,13 @@
+// @ts-nocheck
+
+
 import { md } from "./plugins/md";
 import fs from 'fs'
 import { baseParse } from '@vue/compiler-core'
 
 export default {
   base: './',
-  assertsDir: 'assets',
+  assetsDir: 'assets',
   plugins: [md()],
   vueCustomBlockTransforms: {
     demo: (options) => {
