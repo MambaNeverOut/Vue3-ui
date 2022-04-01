@@ -18,7 +18,11 @@
       <div class="imperfect-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="imperfect-tabs-content">
-      <component class="imperfect-tabs-content-item" :is="current" :key="current.props.title"></component>
+      <component
+        class="imperfect-tabs-content-item"
+        :is="current"
+        :key="current.props.title"
+      ></component>
     </div>
   </div>
 </template>
@@ -52,14 +56,19 @@ export default {
       context.emit("update:selected", title);
     };
     onMounted(() => {
-      watchEffect(() => {
-        const { width, left: left2 } =
-          selectedItem.value.getBoundingClientRect();
-        const { left: left1 } = container.value.getBoundingClientRect();
+      watchEffect(
+        () => {
+          const { width, left: left2 } =
+            selectedItem.value.getBoundingClientRect();
+          const { left: left1 } = container.value.getBoundingClientRect();
 
-        indicator.value.style.width = width + "px";
-        indicator.value.style.left = left2 - left1 + "px";
-      });
+          indicator.value.style.width = width + "px";
+          indicator.value.style.left = left2 - left1 + "px";
+        },
+        {
+          flush: "post",
+        }
+      );
     });
 
     return {
