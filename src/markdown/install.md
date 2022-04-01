@@ -4,13 +4,13 @@
 
 
 ```shell
-npm install Imperfect ui
+npm install imperfect-ui
 ```
 
 或
 
 ```shell
-yarn add Imperfect ui
+yarn add imperfect-ui
 ```
 
 下一节：[开始使用](#/doc/get-started)

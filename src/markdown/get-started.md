@@ -4,16 +4,16 @@
 
 然后再你的代码中写入下面的代码
 
-
 ```javascript
-import {Button, Switch, Dialog, Tabs} from 'Imperfect ui'
+import { Button, Switch, Dialog, Tabs, Tab, openDialog } from "imperfect-ui";
 ```
-
 
 就可以使用我提供的组件了
 
 ## Vue 单文件组件
+
 代码示例
+
 ```vue
 <template>
   <div>
@@ -21,9 +21,9 @@ import {Button, Switch, Dialog, Tabs} from 'Imperfect ui'
   </div>
 </template>
 <script>
-import {Button, Tabs, Switch, Dialog} from "Imperfect ui"
+import { Button, Tabs, Tab, Switch, Dialog, openDialog } from "imperfect-ui";
 export default {
-  components: {Button}
-}
+  components: { Button },
+};
 </script>
 ```
